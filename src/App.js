@@ -7,33 +7,61 @@ import Button from './Components/Button/Button';
 function App() {
 
   const [movies, setMovies] = useState([]);
+  const [isLoading,setIsLoading]=useState(false)
+
+  async function fetchMoviesHandler() {
+    // console.log('function is called');
+    
+    setIsLoading(true)
+
+    const response = await fetch('https://swapi.dev/api/films/')
+      const data=  await response.json();
+     
+        const transformedMovies = data.results.map(movieData => {
+          return {
+            id: movieData.episode_id,
+            title: movieData.title,
+            openingText: movieData.opening_crawl,
+            releaseDate: movieData.release_date
+          }
+        });
   
-  function fetchMoviesHandler() {
-    console.log('function is called');
+    setMovies(transformedMovies);
+    setIsLoading(false);
+      
+     }
+   
+  
+  // function fetchMoviesHandler() {
+  //   console.log('function is called');
 
-    fetch('https://swapi.dev/api/films/').then(response => {
-      return response.json();
-    }).then(data => {
-      const transformedMovies = data.results.map(movieData => {
-        return {
-          id: movieData.episode_id,
-          title: movieData.title,
-          openingText: movieData.opening_crawl,
-          releaseDate: movieData.release_date
-        }
-      });
+  //   fetch('https://swapi.dev/api/films/').then(response => {
+  //     return response.json();
+  //   }).then(data => {
+  //     const transformedMovies = data.results.map(movieData => {
+  //       return {
+  //         id: movieData.episode_id,
+  //         title: movieData.title,
+  //         openingText: movieData.opening_crawl,
+  //         releaseDate: movieData.release_date
+  //       }
+  //     });
 
-      setMovies(transformedMovies);
-    })
-   }
+  //     setMovies(transformedMovies);
+  //   })
+  //  }
  
   return (
     <React.Fragment>
       <section>
-        <Button onClick={fetchMoviesHandler}/>
+        <Button
+          onClick={() =>
+            {fetchMoviesHandler()}}
+        />
       </section>
       <section>
-       <MoviesList movies={movies}/>
+        {!isLoading && <MoviesList movies={movies} />}
+        {isLoading && <p>Loading...</p>}
       </section>
     </React.Fragment>
   );
