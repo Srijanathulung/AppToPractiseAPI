@@ -10,6 +10,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  
   async function fetchMoviesHandler() {
     // console.log('function is called');
     
@@ -78,7 +79,7 @@ function App() {
         <Button
           onClick={() =>
             {fetchMoviesHandler()}}
-        />
+       />
       </section>
       <section>
         {content}
