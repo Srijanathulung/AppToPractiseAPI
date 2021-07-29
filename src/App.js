@@ -3,15 +3,11 @@ import React,{useState,useEffect,useCallback} from 'react';
 import MoviesList from './Components/Movie/MoviesList';
 import Button from './Components/Button/Button';
 
-
 function App() {
 
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  
-
   
   const fetchMoviesHandler = useCallback(async ()=>{
     // console.log('function is called');
