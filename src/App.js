@@ -1,5 +1,5 @@
 import './App.css';
-import React,{useState} from 'react';
+import React,{useState,useEffect,useCallback} from 'react';
 import MoviesList from './Components/Movie/MoviesList';
 import Button from './Components/Button/Button';
 
@@ -11,7 +11,9 @@ function App() {
   const [error, setError] = useState(null);
 
   
-  async function fetchMoviesHandler() {
+
+  
+  const fetchMoviesHandler = useCallback(async ()=>{
     // console.log('function is called');
     
     setIsLoading(true);
@@ -40,18 +42,23 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-     }
+  },[]);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
    
-  let content = <p>Movies not found</p>
+  let content = <p>Movies not found</p>;
+
   if (movies.length > 0) {
-    content= <MoviesList movies={movies}/>
+    content = <MoviesList movies={movies} />;
   }
 
   if (error) {
-    content=<p>Something went wrong</p>
+    content = <p>Something went wrong</p>;
   }
   if (isLoading) {
-     content=<p>Loading...</p>
+     content=<p>Loading...</p>;
   }
   
   // function fetchMoviesHandler() {
