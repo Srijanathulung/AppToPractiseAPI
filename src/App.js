@@ -44,6 +44,10 @@ function App() {
   useEffect(() => {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
+
+  const addMovieHandler = (movie) => {
+    console.log('movie is added');
+  }
    
   let content = <p>Movies not found</p>;
 
@@ -80,7 +84,7 @@ function App() {
   return (
     <React.Fragment>
       <section>
-        <AddMovie/>
+        <AddMovie onAddMovie={addMovieHandler}/>
         </section>
       <section>
         <Button
