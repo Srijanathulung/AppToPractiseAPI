@@ -2,6 +2,7 @@ import './App.css';
 import React,{useState,useEffect,useCallback} from 'react';
 import MoviesList from './Components/Movie/MoviesList';
 import Button from './Components/Button/Button';
+import AddMovie from './Components/Movie/AddMovie';
 
 function App() {
 
@@ -78,6 +79,9 @@ function App() {
  
   return (
     <React.Fragment>
+      <section>
+        <AddMovie/>
+        </section>
       <section>
         <Button
           onClick={() =>
