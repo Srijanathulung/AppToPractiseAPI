@@ -1,7 +1,6 @@
 import './App.css';
 import React,{useState,useEffect,useCallback} from 'react';
 import MoviesList from './Components/Movie/MoviesList';
-import Button from './Components/Button/Button';
 import AddMovie from './Components/Movie/AddMovie';
 
 function App() {
@@ -61,25 +60,6 @@ function App() {
   if (isLoading) {
      content=<p>Loading...</p>;
   }
-  
-  // function fetchMoviesHandler() {
-  //   console.log('function is called');
-
-  //   fetch('https://swapi.dev/api/films/').then(response => {
-  //     return response.json();
-  //   }).then(data => {
-  //     const transformedMovies = data.results.map(movieData => {
-  //       return {
-  //         id: movieData.episode_id,
-  //         title: movieData.title,
-  //         openingText: movieData.opening_crawl,
-  //         releaseDate: movieData.release_date
-  //       }
-  //     });
-
-  //     setMovies(transformedMovies);
-  //   })
-  //  }
  
   return (
     <React.Fragment>
@@ -87,10 +67,7 @@ function App() {
         <AddMovie onAddMovie={addMovieHandler}/>
         </section>
       <section>
-        <Button
-          onClick={() =>
-            {fetchMoviesHandler()}}
-       />
+      <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
         {content}
