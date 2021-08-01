@@ -34,8 +34,8 @@ function App() {
       });
       setMovies(transformedMovies);
 
-    } catch (error) {
-      setError(error.message);
+    } catch (e) {
+      setError(e.message);
     }
     setIsLoading(false);
   },[]);
@@ -46,16 +46,24 @@ function App() {
 
   const addMovieHandler =async (movie) => {
     console.log('movie is added');
-
-    const response = await fetch('https://react-http-f9e2e-default-rtdb.firebaseio.com/movies.json', {
-      method: 'POST',
-      body: JSON.stringify(movie),
-      headers: {
-        'Content-Type': 'application/json'
+    try {
+      const response = await fetch('https://react-http-f9e2e-default-rtdb.firebaseio.com/movies.json', {
+        method: 'POST',
+        body: JSON.stringify(movie),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      if (!response.ok) {
+        throw new Error('something went wrong');
       }
-    });
-    const data = await response.json();
-    console.log(data);
+      const data = await response.json();
+      console.log(data);
+      
+    } catch (e) {
+      setError(e.message);
+    }
+
 
   }
    

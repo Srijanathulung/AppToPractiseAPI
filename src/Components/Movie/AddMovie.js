@@ -21,17 +21,17 @@ const AddMovie = props => {
         <form onSubmit={submitHandler}>
             <div className={classes.control}>
             <label>Title</label>
-            <input htmlFor='title' type='text' id='title'></input>
+            <input ref={titleRef} htmlFor='title' type='text' id='title'></input>
             </div>
 
             <div className={classes.control}>
             <label>Opening Text</label>
-            <textarea rows='5' id ='opening-text'></textarea>
+            <textarea ref={openingTextRef} rows='5' id ='opening-text'></textarea>
             </div>
 
             <div className={classes.control}>
             <label>Release Date</label>
-            <input htmlFor ='release-date' type='text' id='date'></input>
+            <input ref={releaseDateRef} htmlFor ='release-date' type='text' id='date'></input>
             </div>
 
             <button>Add Movies</button>
