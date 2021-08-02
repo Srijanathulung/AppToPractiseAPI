@@ -23,7 +23,9 @@ function App() {
         throw new Error('something went wrong');
       }
       const data = await response.json();
-       
+      // console.log(data); gets method so data will be displayed
+
+
       const transformedMovies = data.results.map(movieData => {
         return {
           id: movieData.episode_id,
@@ -55,7 +57,7 @@ function App() {
         }
       });
       if (!response.ok) {
-        throw new Error('something went wrong');
+        throw new Error('something went wrong in network call');
       }
       const data = await response.json();
       console.log(data);
